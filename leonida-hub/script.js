@@ -24,7 +24,7 @@ function renderCards(){
  });
  cardsElement.replaceChildren();
  for(const item of selected){
-  const article=document.createElement('article');article.className='content-card';
+  const article=document.createElement('article');article.className = item.internal ? 'content-card featured-card' : 'content-card';
   const body=document.createElement('div');body.className='card-body';
   const top=document.createElement('div');top.className='card-top';
   const tag=document.createElement('span');tag.className='card-category';tag.textContent=item.badge.toLocaleLowerCase('pt-BR');
@@ -67,26 +67,126 @@ document.querySelector('#saved-link').addEventListener('click', () => {
  document.querySelector('[data-filter=favoritos]').click();
 });
 document.addEventListener('keydown',event=>{if(event.key==='/'&&document.activeElement?.tagName!=='INPUT'&&!event.ctrlKey&&!event.metaKey){event.preventDefault();searchInput.focus()}});
-const checklistItems=[
+const consoles = {
+ ps5: {
+  name: 'PS5',
+  preload: 'Desde 10 de novembro, à meia-noite local.',
+  checklist: 'Conferir GTA VI na Biblioteca de jogos',
+ },
+ xbox: {
+  name: 'Xbox Series X|S',
+  preload: 'Desde 9 de novembro, às 21h (horário de Brasília).',
+  checklist: 'Conferir GTA VI na Biblioteca completa do Xbox',
+ },
+};
+const consoleKey = 'leonida-hub-console-v1';
+const savedConsole = stored(consoleKey, '');
+let selectedConsole = Object.hasOwn(consoles, savedConsole) ? savedConsole : '';
+const checklistItems = [
  'Verificar espaço livre no console',
  'Conferir o pré-carregamento na minha plataforma',
  'Atualizar o console e verificar a conexão',
- 'Consultar a data e o horário de lançamento'
+ 'Consultar a data e o horário de lançamento',
 ];
-let checked=new Set(stored(checkKey,[]));
-const checklist=document.querySelector('#checklist');
-function renderChecklist(){
- checklist.replaceChildren();
- checklistItems.forEach((title,index)=>{
-  const label=document.createElement('label');label.className='check-item';
-  const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.checked=checked.has(index);
-  checkbox.addEventListener('change',()=>{checkbox.checked?checked.add(index):checked.delete(index);persist(checkKey,[...checked]);updateProgress()});
-  const span=document.createElement('span');span.textContent=title;label.append(checkbox,span);checklist.appendChild(label);
- });updateProgress();
+const checklist = document.querySelector('#checklist');
+const progressText = document.querySelector('#progress-text');
+const progressFill = document.querySelector('#progress-fill');
+const consoleInputs = document.querySelectorAll('input[name="console"]');
+
+function progressKey(consoleId) {
+ return consoleId ? `${checkKey}-${consoleId}` : checkKey;
 }
-function updateProgress(){document.querySelector('#progress-text').textContent=`${checked.size} de ${checklistItems.length} concluídos`;document.querySelector('#progress-fill').style.width=`${(checked.size/checklistItems.length)*100}%`}
-document.querySelector('#reset').addEventListener('click',()=>{checked.clear();persist(checkKey,[]);renderChecklist()});
+
+function readProgress(consoleId) {
+ const progress = stored(progressKey(consoleId), []);
+ return new Set(Array.isArray(progress)
+  ? progress.filter(index => Number.isInteger(index) && index >= 0 && index < checklistItems.length)
+  : []);
+}
+
+let checked = readProgress(selectedConsole);
+
+function updateProgress() {
+ progressText.textContent = `${checked.size} de ${checklistItems.length} concluídos`;
+ progressFill.style.width = `${checked.size / checklistItems.length * 100}%`;
+}
+
+function renderChecklist() {
+ const platform = consoles[selectedConsole];
+ const labels = [...checklistItems];
+ if (platform) labels[1] = platform.checklist;
+
+ checklist.replaceChildren();
+ labels.forEach((title, index) => {
+  const label = document.createElement('label');
+  label.className = 'check-item';
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = checked.has(index);
+  checkbox.addEventListener('change', () => {
+   if (checkbox.checked) checked.add(index);
+   else checked.delete(index);
+   persist(progressKey(selectedConsole), [...checked]);
+   updateProgress();
+  });
+
+  const text = document.createElement('span');
+  text.textContent = title;
+  label.append(checkbox, text);
+  checklist.appendChild(label);
+ });
+ updateProgress();
+}
+
+function renderConsole() {
+ const platform = consoles[selectedConsole];
+ consoleInputs.forEach(input => { input.checked = input.value === selectedConsole; });
+ document.querySelector('#console-preload').textContent =
+  platform?.preload ?? 'Escolha seu console para ver o horário.';
+ document.querySelector('#console-guide').href =
+  platform ? `pre-carregamento.html#${selectedConsole}` : 'pre-carregamento.html';
+ document.querySelector('#checklist-title').textContent =
+  platform ? `Checklist para ${platform.name}` : 'Checklist de lançamento';
+ document.querySelector('#checklist-note').textContent = platform
+  ? 'O progresso deste console fica salvo neste navegador.'
+  : 'Escolha um console para salvar um checklist separado.';
+ renderChecklist();
+}
+
+consoleInputs.forEach(input => input.addEventListener('change', () => {
+ // Transfer the original checklist on the first selection only.
+ if (!selectedConsole && stored(progressKey(input.value), null) === null) {
+  persist(progressKey(input.value), [...checked]);
+ } else {
+  checked = readProgress(input.value);
+ }
+ selectedConsole = input.value;
+ persist(consoleKey, selectedConsole);
+ renderConsole();
+}));
+
+document.querySelector('#reset').addEventListener('click', () => {
+ checked.clear();
+ persist(progressKey(selectedConsole), []);
+ renderChecklist();
+});
+
+const trailerCover = document.querySelector('#watch-trailer');
+trailerCover.addEventListener('click', event => {
+ if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+ event.preventDefault();
+
+ const player = document.createElement('iframe');
+ player.src = 'https://www.rockstargames.com/videoplayer?autoplay=true&embed=&id=76orsa95&locale=en_us';
+ player.title = 'Trailer oficial de lançamento de GTA VI, da Rockstar Games';
+ player.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+ player.allowFullscreen = true;
+ trailerCover.replaceWith(player);
+ player.focus();
+});
+
 // A data de lançamento é exibida no horário local do visitante (meia-noite da data anunciada).
 const releaseDate=new Date(2026,10,19,0,0,0);
 function updateCountdown(){const now=new Date();const distance=releaseDate-now;const el=document.querySelector('#countdown');if(distance<=0){el.textContent='Data de lançamento alcançada';return}const days=Math.floor(distance/86400000),hours=Math.floor(distance/3600000)%24,mins=Math.floor(distance/60000)%60,secs=Math.floor(distance/1000)%60;const parts=[[days,'DIAS'],[hours,'HORAS'],[mins,'MIN'],[secs,'SEG']];el.replaceChildren();for(const [value,label] of parts){const col=document.createElement('div');const b=document.createElement('b');b.textContent=String(value).padStart(2,'0');const small=document.createElement('small');small.textContent=label;col.append(b,small);el.appendChild(col)}}
-document.querySelector('#year').textContent=String(new Date().getFullYear());renderCards();renderChecklist();updateCountdown();setInterval(updateCountdown,1000);
+document.querySelector('#year').textContent=String(new Date().getFullYear());renderCards();renderConsole();updateCountdown();setInterval(updateCountdown,1000);

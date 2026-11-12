@@ -19,7 +19,7 @@
       </a>
       <nav class="nav" aria-label="Principal">
         <a href="#explorar">Explorar</a>
-        <a href="#ferramentas">Ferramentas</a>
+        <a href="#ferramentas">Meu console</a>
         <a href="#informacoes">Sobre</a>
       </nav>
       <a class="top-action" href="#explorar" id="saved-link">★ Salvos</a>
@@ -33,10 +33,18 @@
           <p class="eyebrow">Especial de lançamento</p>
           <h1 id="hero-title"><span>GTA VI</span> O que sabemos até agora</h1>
           <p class="hero-description">O pré-carregamento já começou no PS5 e no Xbox Series X|S. Veja como adiantar a instalação e a que horas o jogo libera.</p>
-          <a class="button" href="pre-carregamento.html">Ler o guia de pré-carregamento <span aria-hidden="true">→</span></a>
+          <div class="hero-actions">
+            <a class="button" href="#ferramentas">Preparar meu console <span aria-hidden="true">↓</span></a>
+            <a href="pre-carregamento.html#horarios">Horários no Brasil</a>
+          </div>
         </div>
         <figure class="hero-media">
-          <iframe src="https://www.rockstargames.com/videoplayer?autoplay=false&amp;embed=&amp;id=76orsa95&amp;locale=en_us" title="Trailer oficial de lançamento de GTA VI, da Rockstar Games" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          <div class="trailer-stage">
+            <a class="trailer-cover" id="watch-trailer" href="https://www.rockstargames.com/VI/launch-trailer">
+              <img src="https://i.ytimg.com/vi/rz1B4B2yBZY/hqdefault.jpg" width="480" height="360" alt="">
+              <span><span aria-hidden="true">▶</span> Assistir ao trailer</span>
+            </a>
+          </div>
           <figcaption>
             <span>Trailer de lançamento · Rockstar Games</span>
             <a href="https://www.rockstargames.com/VI/launch-trailer">Abrir na Rockstar ↗</a>
@@ -53,6 +61,36 @@
     </section>
 
     <div class="shell">
+      <section class="section console-section" id="ferramentas" aria-labelledby="ferramentas-title">
+        <div class="section-heading"><h2 id="ferramentas-title">Meu console</h2></div>
+        <div class="tools-grid">
+          <div class="console-panel">
+            <fieldset class="console-choice">
+              <legend>Em qual console você vai jogar?</legend>
+              <div class="console-options">
+                <label><input type="radio" name="console" value="ps5"> PS5</label>
+                <label><input type="radio" name="console" value="xbox"> Xbox Series X|S</label>
+              </div>
+            </fieldset>
+            <div class="console-details" aria-live="polite">
+              <p><strong>Lançamento</strong> <span>19 de novembro, à meia-noite local.</span></p>
+              <p><strong>Pré-carregamento</strong> <span id="console-preload">Escolha seu console para ver o horário.</span></p>
+            </div>
+            <a class="text-link" id="console-guide" href="pre-carregamento.html">Ler o guia de pré-carregamento →</a>
+          </div>
+          <article class="tool-card planner">
+            <h3 id="checklist-title">Checklist de lançamento</h3>
+            <p id="checklist-note">Escolha um console para salvar um checklist separado.</p>
+            <div id="checklist" class="checklist"></div>
+            <div class="progress">
+              <span id="progress-text" aria-live="polite">0 de 4 concluídos</span>
+              <button type="button" id="reset" class="reset">Reiniciar ↺</button>
+            </div>
+            <div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div>
+          </article>
+        </div>
+      </section>
+
       <section class="section" id="explorar" aria-labelledby="explorar-title">
         <div class="section-heading">
           <h2 id="explorar-title">Guias e informações oficiais</h2>
@@ -75,30 +113,6 @@
         <p id="empty" class="empty" role="status" hidden>Nenhum conteúdo encontrado. Experimente outra busca ou filtro.</p>
       </section>
 
-      <section class="section" id="ferramentas" aria-labelledby="ferramentas-title">
-        <div class="section-heading"><h2 id="ferramentas-title">Ferramentas</h2></div>
-        <div class="tools-grid">
-          <article class="tool-card planner">
-            <h3>Checklist de lançamento</h3>
-            <p>Seu progresso fica salvo neste navegador. <a href="pre-carregamento.html">Veja o guia de pré-carregamento</a>.</p>
-            <div id="checklist" class="checklist"></div>
-            <div class="progress">
-              <span id="progress-text" aria-live="polite">0 de 4 concluídos</span>
-              <button type="button" id="reset" class="reset">Reiniciar ↺</button>
-            </div>
-            <div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div>
-          </article>
-          <article class="tool-card roadmap">
-            <h3>Em planejamento</h3>
-            <ul>
-              <li>Mapa interativo de Leonida</li>
-              <li>Guias de missões e segredos</li>
-              <li>Catálogo de veículos</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
       <section class="section info" id="informacoes" aria-labelledby="sobre-title">
         <div>
           <h2 id="sobre-title">Sobre o Leonida Hub</h2>
@@ -106,6 +120,14 @@
         </div>
         <a class="text-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener noreferrer">Site oficial de GTA VI ↗</a>
       </section>
+      <details class="roadmap">
+        <summary>Em planejamento</summary>
+        <ul>
+          <li>Mapa interativo de Leonida</li>
+          <li>Guias de missões e segredos</li>
+          <li>Catálogo de veículos</li>
+        </ul>
+      </details>
     </div>
   </main>
 
