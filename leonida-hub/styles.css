@@ -289,9 +289,12 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.01
   color-scheme: dark;
 }
 .ocean-floor {
+  --ocean-fade: clamp(90px, 10vw, 150px);
   position: relative;
   isolation: isolate;
-  background: linear-gradient(163deg, #862f83, #522668 42%, #32204e 77%, #263451);
+  background:
+    linear-gradient(to bottom, var(--night), transparent var(--ocean-fade)),
+    linear-gradient(163deg, #862f83, #522668 42%, #32204e 77%, #263451);
 }
 .ocean-footer { background: #263451; }
 .ocean-floor :focus-visible, .ocean-footer :focus-visible { outline-color: var(--teal); }
@@ -304,6 +307,7 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.01
   overflow: hidden;
   pointer-events: none;
   background: radial-gradient(ellipse at 72% 8%, #f57499 0%, #b74891 24%, transparent 71%);
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--ocean-fade));
 }
 .ocean-sun {
   position: absolute;
