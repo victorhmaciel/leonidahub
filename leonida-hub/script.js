@@ -186,6 +186,37 @@ trailerCover.addEventListener('click', event => {
  player.focus();
 });
 
+const ocean = document.querySelector('#ocean-drive');
+const sky = document.querySelector('#ocean-sky');
+const motionToggle = document.querySelector('#ocean-motion');
+const motionKey = 'leonida-hub-ocean-motion-v1';
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+let oceanMotion = stored(motionKey, true) !== false;
+
+function renderOceanMotion() {
+ const enabled = oceanMotion && !reducedMotion.matches;
+ ocean.dataset.motion = enabled ? 'on' : 'off';
+ motionToggle.checked = enabled;
+ motionToggle.disabled = reducedMotion.matches;
+ motionToggle.nextElementSibling.textContent = reducedMotion.matches ? 'Movimento reduzido' : 'Movimento';
+}
+
+motionToggle.closest('label').hidden = false;
+renderOceanMotion();
+motionToggle.addEventListener('change', () => {
+ oceanMotion = motionToggle.checked;
+ persist(motionKey, oceanMotion);
+ renderOceanMotion();
+});
+reducedMotion.addEventListener('change', renderOceanMotion);
+
+if ('IntersectionObserver' in window) {
+ const skyObserver = new IntersectionObserver(([entry]) => {
+  sky.dataset.visible = String(entry.isIntersecting);
+ });
+ skyObserver.observe(sky);
+}
+
 // A data de lançamento é exibida no horário local do visitante (meia-noite da data anunciada).
 const releaseDate=new Date(2026,10,19,0,0,0);
 function updateCountdown(){const now=new Date();const distance=releaseDate-now;const el=document.querySelector('#countdown');if(distance<=0){el.textContent='Data de lançamento alcançada';return}const days=Math.floor(distance/86400000),hours=Math.floor(distance/3600000)%24,mins=Math.floor(distance/60000)%60,secs=Math.floor(distance/1000)%60;const parts=[[days,'DIAS'],[hours,'HORAS'],[mins,'MIN'],[secs,'SEG']];el.replaceChildren();for(const [value,label] of parts){const col=document.createElement('div');const b=document.createElement('b');b.textContent=String(value).padStart(2,'0');const small=document.createElement('small');small.textContent=label;col.append(b,small);el.appendChild(col)}}

@@ -60,78 +60,90 @@
       </aside>
     </section>
 
-    <div class="shell">
-      <section class="section console-section" id="ferramentas" aria-labelledby="ferramentas-title">
-        <div class="section-heading"><h2 id="ferramentas-title">Meu console</h2></div>
-        <div class="tools-grid">
-          <div class="console-panel">
-            <fieldset class="console-choice">
-              <legend>Em qual console você vai jogar?</legend>
-              <div class="console-options">
-                <label><input type="radio" name="console" value="ps5"> PS5</label>
-                <label><input type="radio" name="console" value="xbox"> Xbox Series X|S</label>
+    <div class="ocean-floor" id="ocean-drive">
+      <div class="ocean-sky" id="ocean-sky" aria-hidden="true">
+        <span class="ocean-sun"></span>
+        <span class="ocean-light"></span>
+        <span class="ocean-palm ocean-palm-front"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="ocean-palm ocean-palm-back"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="ocean-palm ocean-palm-left"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+      <div class="shell ocean-content">
+        <section class="section console-section" id="ferramentas" aria-labelledby="ferramentas-title">
+          <div class="section-heading ocean-heading">
+            <h2 id="ferramentas-title">Meu console</h2>
+            <label class="motion-toggle" hidden><input type="checkbox" id="ocean-motion" checked> <span>Movimento</span></label>
+          </div>
+          <div class="tools-grid">
+            <div class="console-panel">
+              <fieldset class="console-choice">
+                <legend>Em qual console você vai jogar?</legend>
+                <div class="console-options">
+                  <label><input type="radio" name="console" value="ps5"> PS5</label>
+                  <label><input type="radio" name="console" value="xbox"> Xbox Series X|S</label>
+                </div>
+              </fieldset>
+              <div class="console-details" aria-live="polite">
+                <p><strong>Lançamento</strong> <span>19 de novembro, à meia-noite local.</span></p>
+                <p><strong>Pré-carregamento</strong> <span id="console-preload">Escolha seu console para ver o horário.</span></p>
               </div>
-            </fieldset>
-            <div class="console-details" aria-live="polite">
-              <p><strong>Lançamento</strong> <span>19 de novembro, à meia-noite local.</span></p>
-              <p><strong>Pré-carregamento</strong> <span id="console-preload">Escolha seu console para ver o horário.</span></p>
+              <a class="text-link" id="console-guide" href="pre-carregamento.html">Ler o guia de pré-carregamento →</a>
             </div>
-            <a class="text-link" id="console-guide" href="pre-carregamento.html">Ler o guia de pré-carregamento →</a>
+            <article class="tool-card planner">
+              <h3 id="checklist-title">Checklist de lançamento</h3>
+              <p id="checklist-note">Escolha um console para salvar um checklist separado.</p>
+              <div id="checklist" class="checklist"></div>
+              <div class="progress">
+                <span id="progress-text" aria-live="polite">0 de 4 concluídos</span>
+                <button type="button" id="reset" class="reset">Reiniciar ↺</button>
+              </div>
+              <div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div>
+            </article>
           </div>
-          <article class="tool-card planner">
-            <h3 id="checklist-title">Checklist de lançamento</h3>
-            <p id="checklist-note">Escolha um console para salvar um checklist separado.</p>
-            <div id="checklist" class="checklist"></div>
-            <div class="progress">
-              <span id="progress-text" aria-live="polite">0 de 4 concluídos</span>
-              <button type="button" id="reset" class="reset">Reiniciar ↺</button>
+        </section>
+
+        <section class="section" id="explorar" aria-labelledby="explorar-title">
+          <div class="section-heading">
+            <h2 id="explorar-title">Guias e informações oficiais</h2>
+          </div>
+          <div class="explore-controls">
+            <label class="search">
+              <span aria-hidden="true">⌕</span>
+              <input id="search" type="search" placeholder="Buscar conteúdos" aria-label="Buscar conteúdos">
+              <kbd aria-hidden="true">/</kbd>
+            </label>
+            <div class="filters" role="group" aria-label="Filtrar conteúdos">
+              <button type="button" class="filter active" data-filter="todos" aria-pressed="true">Todos</button>
+              <button type="button" class="filter" data-filter="oficial" aria-pressed="false">Oficiais</button>
+              <button type="button" class="filter" data-filter="suporte" aria-pressed="false">Suporte</button>
+              <button type="button" class="filter" data-filter="midia" aria-pressed="false">Mídia</button>
+              <button type="button" class="filter" data-filter="favoritos" aria-pressed="false">★ Salvos</button>
             </div>
-            <div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="explorar" aria-labelledby="explorar-title">
-        <div class="section-heading">
-          <h2 id="explorar-title">Guias e informações oficiais</h2>
-        </div>
-        <div class="explore-controls">
-          <label class="search">
-            <span aria-hidden="true">⌕</span>
-            <input id="search" type="search" placeholder="Buscar conteúdos" aria-label="Buscar conteúdos">
-            <kbd aria-hidden="true">/</kbd>
-          </label>
-          <div class="filters" role="group" aria-label="Filtrar conteúdos">
-            <button type="button" class="filter active" data-filter="todos" aria-pressed="true">Todos</button>
-            <button type="button" class="filter" data-filter="oficial" aria-pressed="false">Oficiais</button>
-            <button type="button" class="filter" data-filter="suporte" aria-pressed="false">Suporte</button>
-            <button type="button" class="filter" data-filter="midia" aria-pressed="false">Mídia</button>
-            <button type="button" class="filter" data-filter="favoritos" aria-pressed="false">★ Salvos</button>
           </div>
-        </div>
-        <div class="cards" id="cards" aria-live="polite"></div>
-        <p id="empty" class="empty" role="status" hidden>Nenhum conteúdo encontrado. Experimente outra busca ou filtro.</p>
-      </section>
+          <div class="cards" id="cards" aria-live="polite"></div>
+          <p id="empty" class="empty" role="status" hidden>Nenhum conteúdo encontrado. Experimente outra busca ou filtro.</p>
+        </section>
 
-      <section class="section info" id="informacoes" aria-labelledby="sobre-title">
-        <div>
-          <h2 id="sobre-title">Sobre o Leonida Hub</h2>
-          <p>Somos um projeto independente de fãs de GTA VI. As informações sobre o jogo vêm de anúncios, vídeos e materiais de suporte da Rockstar.</p>
-        </div>
-        <a class="text-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener noreferrer">Site oficial de GTA VI ↗</a>
-      </section>
-      <details class="roadmap">
-        <summary>Em planejamento</summary>
-        <ul>
-          <li>Mapa interativo de Leonida</li>
-          <li>Guias de missões e segredos</li>
-          <li>Catálogo de veículos</li>
-        </ul>
-      </details>
+        <section class="section info" id="informacoes" aria-labelledby="sobre-title">
+          <div>
+            <h2 id="sobre-title">Sobre o Leonida Hub</h2>
+            <p>Somos um projeto independente de fãs de GTA VI. As informações sobre o jogo vêm de anúncios, vídeos e materiais de suporte da Rockstar.</p>
+          </div>
+          <a class="text-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener noreferrer">Site oficial de GTA VI ↗</a>
+        </section>
+        <details class="roadmap">
+          <summary>Em planejamento</summary>
+          <ul>
+            <li>Mapa interativo de Leonida</li>
+            <li>Guias de missões e segredos</li>
+            <li>Catálogo de veículos</li>
+          </ul>
+        </details>
+      </div>
     </div>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer ocean-footer">
     <div class="shell footer">
       <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true"></span><span>Leonida <strong>Hub</strong></span></a>
       <p>Projeto independente de fãs, sem afiliação com Rockstar Games ou Take-Two Interactive.</p>
