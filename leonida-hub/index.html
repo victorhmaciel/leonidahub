@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f1e7">
-  <meta name="description" content="Acompanhe GTA VI com informações oficiais, trailers e um checklist para o lançamento.">
+  <meta name="theme-color" content="#181526">
+  <meta name="description" content="Assista ao trailer de GTA VI e confira como fazer o pré-carregamento no PS5 e Xbox Series X|S.">
   <title>Leonida Hub | GTA VI</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -26,82 +26,87 @@
     </div>
   </header>
 
-  <main class="shell" id="conteudo">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Grand Theft Auto VI</p>
-        <h1 id="hero-title">De olho em<br>Vice City.</h1>
-        <p class="hero-description">Data de lançamento, trailers e o que preparar para jogar GTA VI no PS5 e no Xbox Series X|S.</p>
-        <a class="button" href="#explorar">Explorar conteúdos <span aria-hidden="true">↓</span></a>
-      </div>
-      <figure class="hero-media">
-        <img src="vice-city.jpg" width="1536" height="1024" alt="Palmeiras e fachadas art déco em uma rua inspirada em Miami.">
-        <figcaption>Miami art déco · Imagem ilustrativa</figcaption>
-      </figure>
-    </section>
-
-    <aside class="launch-panel" aria-label="Lançamento de GTA VI">
-      <div>
-        <p class="eyebrow">Lançamento anunciado</p>
-        <p class="launch-date"><time datetime="2026-11-19">19 de novembro de 2026</time></p>
-      </div>
-      <div class="countdown" id="countdown" aria-live="off"><span>Carregando contagem…</span></div>
-    </aside>
-
-    <section class="section" id="explorar" aria-labelledby="explorar-title">
-      <div class="section-heading">
-        <h2 id="explorar-title">O que já sabemos</h2>
-        <p>Informações e materiais publicados pela Rockstar.</p>
-      </div>
-      <div class="explore-controls">
-        <label class="search">
-          <span aria-hidden="true">⌕</span>
-          <input id="search" type="search" placeholder="Buscar conteúdos" aria-label="Buscar conteúdos">
-          <kbd aria-hidden="true">/</kbd>
-        </label>
-        <div class="filters" role="group" aria-label="Filtrar conteúdos">
-          <button type="button" class="filter active" data-filter="todos" aria-pressed="true">Todos</button>
-          <button type="button" class="filter" data-filter="oficial" aria-pressed="false">Oficiais</button>
-          <button type="button" class="filter" data-filter="suporte" aria-pressed="false">Suporte</button>
-          <button type="button" class="filter" data-filter="midia" aria-pressed="false">Mídia</button>
-          <button type="button" class="filter" data-filter="favoritos" aria-pressed="false">★ Salvos</button>
+  <main id="conteudo">
+    <section class="hero-band" aria-labelledby="hero-title">
+      <div class="shell hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Especial de lançamento</p>
+          <h1 id="hero-title"><span>GTA VI</span> O que sabemos até agora</h1>
+          <p class="hero-description">O pré-carregamento já começou no PS5 e no Xbox Series X|S. Veja como adiantar a instalação e a que horas o jogo libera.</p>
+          <a class="button" href="pre-carregamento.html">Ler o guia de pré-carregamento <span aria-hidden="true">→</span></a>
         </div>
+        <figure class="hero-media">
+          <iframe src="https://www.rockstargames.com/videoplayer?autoplay=false&amp;embed=&amp;id=76orsa95&amp;locale=en_us" title="Trailer oficial de lançamento de GTA VI, da Rockstar Games" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          <figcaption>
+            <span>Trailer de lançamento · Rockstar Games</span>
+            <a href="https://www.rockstargames.com/VI/launch-trailer">Abrir na Rockstar ↗</a>
+          </figcaption>
+        </figure>
       </div>
-      <div class="cards" id="cards" aria-live="polite"></div>
-      <p id="empty" class="empty" role="status" hidden>Nenhum conteúdo encontrado. Experimente outra busca ou filtro.</p>
+      <aside class="shell launch-panel" aria-label="Lançamento de GTA VI">
+        <div>
+          <p class="eyebrow">Lançamento</p>
+          <p class="launch-date"><time datetime="2026-11-19">19 de novembro de 2026</time></p>
+        </div>
+        <div class="countdown" id="countdown" aria-live="off"><span>Carregando contagem…</span></div>
+      </aside>
     </section>
 
-    <section class="section" id="ferramentas" aria-labelledby="ferramentas-title">
-      <div class="section-heading"><h2 id="ferramentas-title">Ferramentas</h2></div>
-      <div class="tools-grid">
-        <article class="tool-card planner">
-          <h3>Checklist de lançamento</h3>
-          <p>Seu progresso fica salvo neste navegador.</p>
-          <div id="checklist" class="checklist"></div>
-          <div class="progress">
-            <span id="progress-text" aria-live="polite">0 de 4 concluídos</span>
-            <button type="button" id="reset" class="reset">Reiniciar ↺</button>
+    <div class="shell">
+      <section class="section" id="explorar" aria-labelledby="explorar-title">
+        <div class="section-heading">
+          <h2 id="explorar-title">Guias e informações oficiais</h2>
+        </div>
+        <div class="explore-controls">
+          <label class="search">
+            <span aria-hidden="true">⌕</span>
+            <input id="search" type="search" placeholder="Buscar conteúdos" aria-label="Buscar conteúdos">
+            <kbd aria-hidden="true">/</kbd>
+          </label>
+          <div class="filters" role="group" aria-label="Filtrar conteúdos">
+            <button type="button" class="filter active" data-filter="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="filter" data-filter="oficial" aria-pressed="false">Oficiais</button>
+            <button type="button" class="filter" data-filter="suporte" aria-pressed="false">Suporte</button>
+            <button type="button" class="filter" data-filter="midia" aria-pressed="false">Mídia</button>
+            <button type="button" class="filter" data-filter="favoritos" aria-pressed="false">★ Salvos</button>
           </div>
-          <div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div>
-        </article>
-        <article class="tool-card roadmap">
-          <h3>Em planejamento</h3>
-          <ul>
-            <li>Mapa interativo de Leonida</li>
-            <li>Guias de missões e segredos</li>
-            <li>Catálogo de veículos</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+        </div>
+        <div class="cards" id="cards" aria-live="polite"></div>
+        <p id="empty" class="empty" role="status" hidden>Nenhum conteúdo encontrado. Experimente outra busca ou filtro.</p>
+      </section>
 
-    <section class="section info" id="informacoes" aria-labelledby="sobre-title">
-      <div>
-        <h2 id="sobre-title">Sobre o Leonida Hub</h2>
-        <p>Somos um projeto independente de fãs de GTA VI. As informações sobre o jogo vêm de anúncios, vídeos e materiais de suporte da Rockstar.</p>
-      </div>
-      <a class="text-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener noreferrer">Site oficial de GTA VI ↗</a>
-    </section>
+      <section class="section" id="ferramentas" aria-labelledby="ferramentas-title">
+        <div class="section-heading"><h2 id="ferramentas-title">Ferramentas</h2></div>
+        <div class="tools-grid">
+          <article class="tool-card planner">
+            <h3>Checklist de lançamento</h3>
+            <p>Seu progresso fica salvo neste navegador. <a href="pre-carregamento.html">Veja o guia de pré-carregamento</a>.</p>
+            <div id="checklist" class="checklist"></div>
+            <div class="progress">
+              <span id="progress-text" aria-live="polite">0 de 4 concluídos</span>
+              <button type="button" id="reset" class="reset">Reiniciar ↺</button>
+            </div>
+            <div class="progress-track" aria-hidden="true"><div id="progress-fill"></div></div>
+          </article>
+          <article class="tool-card roadmap">
+            <h3>Em planejamento</h3>
+            <ul>
+              <li>Mapa interativo de Leonida</li>
+              <li>Guias de missões e segredos</li>
+              <li>Catálogo de veículos</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section info" id="informacoes" aria-labelledby="sobre-title">
+        <div>
+          <h2 id="sobre-title">Sobre o Leonida Hub</h2>
+          <p>Somos um projeto independente de fãs de GTA VI. As informações sobre o jogo vêm de anúncios, vídeos e materiais de suporte da Rockstar.</p>
+        </div>
+        <a class="text-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener noreferrer">Site oficial de GTA VI ↗</a>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">

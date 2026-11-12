@@ -1,11 +1,11 @@
 'use strict';
-// As páginas abaixo são fontes oficiais externas; os cartões não inventam fatos sobre o jogo.
+// Guias do Leonida Hub e links para as fontes oficiais.
 const content = [
+ {id:'preload', category:'suporte', badge:'GUIA', title:'Como fazer o pré-carregamento de GTA VI', description:'Passo a passo para instalar a edição digital no PS5 e no Xbox Series X|S, com os horários no Brasil.', url:'pre-carregamento.html', link:'Ler guia', internal:true},
  {id:'lancamento', category:'oficial', badge:'INFORMAÇÃO OFICIAL', title:'Data de lançamento confirmada', description:'Grand Theft Auto VI chega em 19 de novembro de 2026. Confira a página oficial e as plataformas anunciadas.', url:'https://www.rockstargames.com/VI', link:'Ver página oficial'},
- {id:'plataformas', category:'oficial', badge:'INFORMAÇÃO OFICIAL', title:'Onde jogar GTA VI?', description:'Veja as informações da Rockstar sobre PS5 e Xbox Series X|S e acompanhe futuros anúncios de plataformas.', url:'https://www.rockstargames.com/VI', link:'Conferir plataformas'},
- {id:'trailers', category:'midia', badge:'MÍDIA OFICIAL', title:'Trailers e novidades', description:'Acesse vídeos, imagens e novidades diretamente no portal de Grand Theft Auto VI da Rockstar.', url:'https://www.rockstargames.com/VI', link:'Ver trailers'},
+ {id:'plataformas', category:'oficial', badge:'INFORMAÇÃO OFICIAL', title:'Onde jogar GTA VI?', description:'Veja as informações da Rockstar sobre PS5 e Xbox Series X|S e acompanhe futuros anúncios de plataformas.', url:'https://support.rockstargames.com/articles/4QfG4FmZCf5W1gS8jy4UVT/grand-theft-auto-vi-platform-editions-and-versions', link:'Conferir plataformas'},
+ {id:'trailers', category:'midia', badge:'MÍDIA OFICIAL', title:'Trailers e novidades', description:'Acesse vídeos, imagens e novidades diretamente no portal de Grand Theft Auto VI da Rockstar.', url:'https://www.rockstargames.com/VI/launch-trailer', link:'Ver trailer de lançamento'},
  {id:'suporte', category:'suporte', badge:'SUPORTE OFICIAL', title:'Central de suporte', description:'Informações sobre instalação, pré-venda e perguntas frequentes disponibilizadas pelo suporte da Rockstar.', url:'https://support.rockstargames.com/VI', link:'Abrir suporte'},
- {id:'preload', category:'suporte', badge:'PREPARAÇÃO', title:'Tudo sobre o pré-carregamento', description:'Consulte datas e instruções de pré-carregamento no suporte oficial, conforme sua plataforma e região.', url:'https://support.rockstargames.com/articles/29jV3Cv2cCgvwM1XgtMO5o/grand-theft-auto-vi-regional-pre-load-and-release-times-on-playstation-5-and-xbox-series-x-or-s', link:'Consultar detalhes'},
  {id:'noticias', category:'oficial', badge:'NOTÍCIAS OFICIAIS', title:'Notícias da Rockstar', description:'Acompanhe diretamente o Newswire para não confundir comunicados oficiais com rumores.', url:'https://www.rockstargames.com/newswire', link:'Acessar Newswire'}
 ];
 const favKey='leonida-hub-favorites-v1';
@@ -44,7 +44,14 @@ function renderCards(){
   top.append(tag,save);
   const heading=document.createElement('h3');heading.textContent=item.title;
   const desc=document.createElement('p');desc.textContent=item.description;
-  const link=document.createElement('a');link.className='card-link';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=item.link+' ↗';
+  const link = document.createElement('a');
+  link.className = 'card-link';
+  link.href = item.url;
+  link.textContent = item.link + (item.internal ? ' →' : ' ↗');
+  if (!item.internal) {
+   link.target = '_blank';
+   link.rel = 'noopener noreferrer';
+  }
   body.append(top,heading,desc,link);article.appendChild(body);cardsElement.appendChild(article);
  }
  document.querySelector('#empty').hidden=selected.length!==0;

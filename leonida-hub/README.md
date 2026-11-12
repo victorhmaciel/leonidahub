@@ -12,7 +12,8 @@ Portal independente de fãs para informações sobre Grand Theft Auto VI.
 - Conecte o repositório GitHub ao Netlify. Como é um projeto estático, selecione a branch principal e deixe o comando de build em branco. O arquivo netlify.toml, na raiz do repositório, define leonida-hub como diretório de publicação.
 
 ## Arquivos
-- `index.html` — estrutura semântica e conteúdo
+- index.html — página inicial com o trailer oficial incorporado
+- pre-carregamento.html — guia para PS5 e Xbox Series X|S
 - `styles.css` — design responsivo
 - `script.js` — filtros, busca, favoritos, checklist e contagem regressiva
 
@@ -24,7 +25,7 @@ Portal independente de fãs para informações sobre Grand Theft Auto VI.
 - Considerar backend/CMS quando houver volume de conteúdo.
 
 ## Avisos
-Não é um produto oficial da Rockstar Games/Take-Two. A imagem de abertura é uma ilustração gerada para o site, inspirada na arquitetura art déco de Miami. Respeite direitos autorais e as políticas de uso ao expandir o conteúdo e planejar monetização.
+Não é um produto oficial da Rockstar Games/Take-Two. O trailer de abertura usa o player incorporado da Rockstar Games. Respeite direitos autorais e as políticas de uso ao expandir o conteúdo e planejar monetização.
 
 Fontes iniciais:
 - https://www.rockstargames.com/VI
